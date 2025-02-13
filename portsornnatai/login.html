@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-
+scale=1.0">
+
+<title>Register Account</title>
+<style>
+/* การจัดแต่งสไตล์ */
+body {
+font-family: Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+background-color: #f0f2f5;
+}
+
+#register-container {
+max-width: 400px;
+padding: 20px;
+background-color: #fff;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+text-align: center;
+}
+
+h1 {
+color: #333;
+}
+
+input[type="text"], input[type="password"] {
+width: calc(100% - 20px);
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ddd;
+border-radius: 5px;
+font-size: 16px;
+}
+
+button {
+padding: 10px 20px;
+font-size: 16px;
+color: white;
+background-color: #28a745;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+button:hover {
+background-color: #218838;
+
+}
+
+#message {
+margin-top: 20px;
+font-size: 16px;
+}
+</style>
+</head>
+<body>
+<!-- ฟอร์มสํา หรับสมัครสมาชิก -->
+<div id="register-container">
+<h1>Register Account</h1>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<input type="password" id="confirmPassword" placeholder="Confirm
+Password">
+
+<button onclick="register()">Register</button>
+<button onclick="resetForm()">Reset</button>
+
+<div id="message"></div>
+</div>
+
+<script>
+// ฟังก์ชันตรวจสอบและสมัครสมาชิก
+
+function register() {
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+var confirmPassword =
+
+document.getElementById("confirmPassword").value;
+
+var messageElement = document.getElementById("message");
+
+// ตรวจสอบข้อมูลเบื้อบื้ งต้น
+if (username === "" || password === "" || confirmPassword ===
+
+"") {
+
+messageElement.innerHTML = "Please fill in all fields.";
+messageElement.style.color = "red";
+} else if (username.length < 4) {
+messageElement.innerHTML = "Username must be at least 4 characters long.";
+
+messageElement.style.color = "red";
+} else if (password.length < 6) {messageElement.innerHTML = "Password must be at least 6 characters long.";
+
+} else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+messageElement.innerHTML = "Username must contain only letters and number.";
+messageElement.style.color = "red";
+
+} else if (!/[!@#$%^&*]/.test(password)) {
+messageElement.innerHTML = "Password must include at least one special character(!@#$%^&*).";
+messageElement.style.color = "red";
+
+messageElement.style.color = "red";
+} else if (!/\d/.test(password)) {
+messageElement.innerHTML = "Password must include at least one number.";
+
+messageElement.style.color = "red";
+} else if (password !== confirmPassword) {
+messageElement.innerHTML = "Passwords do not match.";
+messageElement.style.color = "red";
+} else {
+
+// สมัครสํา เร็จ
+messageElement.innerHTML = "Registration successful!";
+messageElement.style.color = "green";
+}
+}
+
+// ฟังก์ชันสํา หรับรีเซ็ตฟอร์ม
+function resetForm() {
+document.getElementById("username").value = "";
+document.getElementById("password").value = "";
+document.getElementById("confirmPassword").value = "";
+document.getElementById("message").innerHTML = "";
+}
+</script>
+</body>
+</html>
